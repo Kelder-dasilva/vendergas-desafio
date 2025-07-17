@@ -6,6 +6,7 @@ const authRoutes = require('./routes/authRoutes');
 const companyRoutes = require('./routes/companyRoutes');
 const productRoutes = require('./routes/productRoutes');
 const clientRoutes = require('./routes/clientRoutes');
+const orderRoutes = require('./routes/orderRoutes');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/empresas', companyRoutes);
 app.use('/api/produtos', productRoutes);
 app.use('/api/clientes', clientRoutes);
+app.use('/api/pedidos', orderRoutes);
 app.get('/', (req, res) => {
     res.send('API Vendergas funcionando!');
 });
