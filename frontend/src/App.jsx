@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import Empresas from './pages/Empresas';
 import Layout from './components/Layout';
 import Produtos from './pages/Produtos';
+import Clientes from './pages/Clientes';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/empresas" element={<Empresas />} />
             <Route path="/produtos" element={<Produtos />} />
+            <Route path="/clientes" element={<Clientes />} />
             {/* Futuras páginas protegidas */}
           </Route>
         </Routes>
