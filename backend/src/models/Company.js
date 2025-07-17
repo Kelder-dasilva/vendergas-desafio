@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
 
 const CompanySchema = new mongoose.Schema({
-    nome: { type: String, required: true },
+    nomeFantasia: { type: String, required: true },
+    razaoSocial: { type: String },
     cnpj: { type: String, unique: true, required: true },
-    endereco: { type: String }
+    cep: { type: String },
+    endereco: { type: String },
+    usuarioId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' } // opcional
 }, { timestamps: true });
 
 module.exports = mongoose.model('Company', CompanySchema);

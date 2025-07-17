@@ -9,8 +9,13 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            const decoded = jwtDecode(token);
-            setUser({ ...decoded, token });
+            try {
+                const decoded = jwtDecode(token);
+                setUser({ ...decoded, token });
+            } catch (err) {
+                console.error('Erro ao decodificar token', err);
+                setUser(null);
+            }
         }
     }, []);
 
@@ -23,6 +28,7 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem('token');
         setUser(null);
+        window.location.href = '/';
     };
 
     return (
