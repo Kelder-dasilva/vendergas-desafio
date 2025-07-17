@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import PrivateRoute from './context/PrivateRoute';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Empresas from './pages/Empresas';
 import Dashboard from './pages/Dashboard';
-import PrivateRoute from './context/PrivateRoute';
+import Empresas from './pages/Empresas';
+import Layout from './components/Layout';
 
 export default function App() {
   return (
@@ -14,15 +15,16 @@ export default function App() {
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
-          <Route path="/dashboard" element={
-            <PrivateRoute><Dashboard /></PrivateRoute>
-          } />
-
-          <Route path="/empresas" element={
-            <PrivateRoute><Empresas /></PrivateRoute>
-          } />
-
-          {/* futuras rotas protegidas para produtos, clientes, pedidos */}
+          <Route element={
+            <PrivateRoute>
+              <Layout />
+            </PrivateRoute>
+          }>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/empresas" element={<Empresas />} />
+            {/* Futuras páginas protegidas */}
+            {/* <Route path="/produtos" element={<Produtos />} /> */}
+          </Route>
         </Routes>
       </BrowserRouter>
     </AuthProvider>
