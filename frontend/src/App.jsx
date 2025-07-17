@@ -6,6 +6,7 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Empresas from './pages/Empresas';
 import Layout from './components/Layout';
+import Produtos from './pages/Produtos';
 
 export default function App() {
   return (
@@ -22,8 +23,8 @@ export default function App() {
           }>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/empresas" element={<Empresas />} />
+            <Route path="/produtos" element={<Produtos />} />
             {/* Futuras páginas protegidas */}
-            {/* <Route path="/produtos" element={<Produtos />} /> */}
           </Route>
         </Routes>
       </BrowserRouter>
