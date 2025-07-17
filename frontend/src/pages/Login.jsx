@@ -1,10 +1,12 @@
 import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import { AuthContext } from '../context/AuthContext';
 
 export default function Login() {
     const [form, setForm] = useState({ email: '', password: '' });
     const { login } = useContext(AuthContext);
+    const navigate = useNavigate(); // 👈 novo
 
     const handleChange = (e) =>
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -14,7 +16,7 @@ export default function Login() {
         try {
             const res = await api.post('/auth/login', form);
             login(res.data.token);
-            alert('Login realizado!');
+            navigate('/dashboard'); // 👈 redireciona sem recarregar o app
         } catch (err) {
             alert('Login inválido');
         }
