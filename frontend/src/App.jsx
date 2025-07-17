@@ -8,6 +8,7 @@ import Empresas from './pages/Empresas';
 import Layout from './components/Layout';
 import Produtos from './pages/Produtos';
 import Clientes from './pages/Clientes';
+import Pedidos from './pages/Pedidos';
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
             <Route path="/empresas" element={<Empresas />} />
             <Route path="/produtos" element={<Produtos />} />
             <Route path="/clientes" element={<Clientes />} />
+            <Route path="/pedidos" element={<Pedidos />} />
             {/* Futuras páginas protegidas */}
           </Route>
         </Routes>
