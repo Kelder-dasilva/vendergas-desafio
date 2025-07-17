@@ -5,6 +5,7 @@ const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
 const companyRoutes = require('./routes/companyRoutes');
 const productRoutes = require('./routes/productRoutes');
+const clientRoutes = require('./routes/clientRoutes');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/empresas', companyRoutes);
 app.use('/api/produtos', productRoutes);
+app.use('/api/clientes', clientRoutes);
 app.get('/', (req, res) => {
     res.send('API Vendergas funcionando!');
 });
