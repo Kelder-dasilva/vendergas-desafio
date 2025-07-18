@@ -23,11 +23,14 @@ export default function Login() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Login</h2>
-            <input name="email" placeholder="Email" onChange={handleChange} />
-            <input name="password" type="password" placeholder="Senha" onChange={handleChange} />
-            <button type="submit">Entrar</button>
-        </form>
+        <div className="page">
+            <form onSubmit={handleSubmit} className="form-box">
+                <h2>Login</h2>
+                <br />
+                <input name="email" placeholder="Email" onChange={handleChange} />
+                <input name="password" type="password" placeholder="Senha" onChange={handleChange} />
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
     );
 }

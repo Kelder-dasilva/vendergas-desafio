@@ -58,8 +58,8 @@ export default function Pedidos() {
     };
 
     return (
-        <div style={{ display: 'flex', gap: '2rem' }}>
-            <div style={{ width: '350px' }}>
+        <div className="page">
+            <div className="form-box">
                 <h2>Novo Pedido</h2>
 
                 <select value={clienteId} onChange={e => setClienteId(e.target.value)}>
@@ -75,8 +75,6 @@ export default function Pedidos() {
                         <option key={e._id} value={e._id}>{e.nomeFantasia}</option>
                     ))}
                 </select>
-
-                <hr />
 
                 <select value={produtoId} onChange={e => setProdutoId(e.target.value)}>
                     <option value="">Selecione um produto</option>
@@ -96,24 +94,26 @@ export default function Pedidos() {
                 <button type="button" onClick={adicionarItem}>Adicionar Item</button>
 
                 <hr />
-                <h3>Itens do Pedido</h3>
-                <ul>
-                    {itens.map((item, index) => (
-                        <li key={index}>
-                            {item.nome} x {item.quantidade} = R$ {(item.preco * item.quantidade).toFixed(2)}
-                            <button onClick={() => removerItem(index)}>❌</button>
-                        </li>
-                    ))}
-                </ul>
+                <br />
+                <h3>Itens do Pedido:</h3>
+                <div className='list'>
+                    <ul className='card'>
+                        {itens.map((item, index) => (
+                            <li key={index}>
+                                {item.nome} x {item.quantidade} = R$ {(item.preco * item.quantidade).toFixed(2)}
+                                <button style={{marginLeft: '8px'}} onClick={() => removerItem(index)}>❌</button>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
 
                 <p><strong>Total: R$ {total.toFixed(2)}</strong></p>
-
                 <button onClick={salvarPedido} disabled={!clienteId || !empresaId || itens.length === 0}>
                     Salvar Pedido
                 </button>
             </div>
 
-            <div style={{ flex: 1 }}>
+            <div className="list">
                 <h2>Pedidos Registrados</h2>
                 {pedidos.map(p => (
                     <div key={p._id} style={{
@@ -125,16 +125,18 @@ export default function Pedidos() {
                         <strong>Cliente:</strong> {clientes.find(c => c._id === p.clienteId)?.nome || 'N/A'}<br />
                         <strong>Empresa:</strong> {empresas.find(e => e._id === p.empresaId)?.nomeFantasia || 'N/A'}<br />
                         <strong>Itens:</strong>
-                        <ul>
-                            {p.itens.map((i, idx) => {
-                                const prod = produtos.find(prod => prod._id === i.produtoId);
-                                return (
-                                    <li key={idx}>
-                                        {prod?.nome || 'Produto'} x {i.quantidade}
-                                    </li>
-                                );
-                            })}
-                        </ul>
+                        <div className="card">
+                            <ul>
+                                {p.itens.map((i, idx) => {
+                                    const prod = produtos.find(prod => prod._id === i.produtoId);
+                                    return (
+                                        <li key={idx}>
+                                            {prod?.nome || 'Produto'} x {i.quantidade}
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
                         <strong>Total:</strong> R$ {p.total ? p.total.toFixed(2) : '0,00'}
                     </div>
                 ))}
