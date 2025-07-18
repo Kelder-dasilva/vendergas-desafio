@@ -13,7 +13,6 @@ export default function Layout() {
 
     return (
         <div>
-            {/* Header fixo */}
             <header style={{
                 backgroundColor: '#1e1e2f',
                 color: 'white',
@@ -52,10 +51,8 @@ export default function Layout() {
                 </div>
             </header>
 
-            {/* Espaço reservado para o header */}
             <div style={{ height: '90px' }} />
 
-            {/* Conteúdo da página */}
             <main style={{ padding: '2rem' }}>
                 <Outlet />
             </main>

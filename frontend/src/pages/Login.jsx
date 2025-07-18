@@ -6,8 +6,7 @@ import { AuthContext } from '../context/AuthContext';
 export default function Login() {
     const [form, setForm] = useState({ email: '', password: '' });
     const { login } = useContext(AuthContext);
-    const navigate = useNavigate(); // 👈 novo
-
+    const navigate = useNavigate(); 
     const handleChange = (e) =>
         setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -16,7 +15,7 @@ export default function Login() {
         try {
             const res = await api.post('/auth/login', form);
             login(res.data.token);
-            navigate('/dashboard'); // 👈 redireciona sem recarregar o app
+            navigate('/dashboard');
         } catch (err) {
             alert('Login inválido');
         }
@@ -29,7 +28,12 @@ export default function Login() {
                 <br />
                 <input name="email" placeholder="Email" onChange={handleChange} />
                 <input name="password" type="password" placeholder="Senha" onChange={handleChange} />
-                <button type="submit">Entrar</button>
+                <div style={{display: 'flex', flexDirection: 'row'}}>
+                    <button type="submit">Entrar</button>
+                    <p style={{ marginTop: '0.4rem', marginLeft: '0.6rem' }}>
+                        Não tem conta? <a href="/register">Cadastre-se</a>
+                    </p>
+                </div>
             </form>
         </div>
     );

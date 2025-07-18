@@ -23,7 +23,6 @@ export default function Empresas() {
         fetchEmpresas();
     }, []);
 
-    // Busca endereço via CEP
     useEffect(() => {
         if (form.cep && form.cep.length === 8) {
             fetch(`https://viacep.com.br/ws/${form.cep}/json/`)
@@ -39,7 +38,6 @@ export default function Empresas() {
         }
     }, [form.cep]);
 
-    // Input com máscara
     const handleChange = (e) => {
         let { name, value } = e.target;
 

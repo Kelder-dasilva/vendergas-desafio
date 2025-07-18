@@ -16,7 +16,7 @@ export default function Dashboard() {
         };
 
         updateDataHora();
-        const timer = setInterval(updateDataHora, 60000); // atualiza a cada 1 min
+        const timer = setInterval(updateDataHora, 60000);
 
         return () => clearInterval(timer);
     }, []);
