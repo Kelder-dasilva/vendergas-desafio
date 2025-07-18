@@ -11,7 +11,6 @@ export default function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validações básicas
         if (!form.name || !form.email || !form.password) {
             setError('Preencha todos os campos.');
             return;
@@ -25,7 +24,7 @@ export default function Register() {
         try {
             await api.post('/auth/register', form);
             alert('Usuário cadastrado com sucesso!');
-            window.location.href = '/'; // Redireciona para login
+            window.location.href = '/';
         } catch (err) {
             setError(err?.response?.data?.error || 'Erro ao cadastrar');
         }

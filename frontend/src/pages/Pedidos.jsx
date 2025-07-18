@@ -6,6 +6,8 @@ export default function Pedidos() {
     const [empresas, setEmpresas] = useState([]);
     const [produtos, setProdutos] = useState([]);
     const [pedidos, setPedidos] = useState([]);
+    console.log('pedidos', pedidos);
+    
 
     const [clienteId, setClienteId] = useState('');
     const [empresaId, setEmpresaId] = useState('');
@@ -101,7 +103,7 @@ export default function Pedidos() {
                         {itens.map((item, index) => (
                             <li key={index}>
                                 {item.nome} x {item.quantidade} = R$ {(item.preco * item.quantidade).toFixed(2)}
-                                <button style={{marginLeft: '8px'}} onClick={() => removerItem(index)}>❌</button>
+                                <button style={{ marginLeft: '8px' }} onClick={() => removerItem(index)}>❌</button>
                             </li>
                         ))}
                     </ul>
@@ -122,13 +124,13 @@ export default function Pedidos() {
                         marginBottom: '1rem',
                         borderRadius: '8px'
                     }}>
-                        <strong>Cliente:</strong> {clientes.find(c => c._id === p.clienteId)?.nome || 'N/A'}<br />
-                        <strong>Empresa:</strong> {empresas.find(e => e._id === p.empresaId)?.nomeFantasia || 'N/A'}<br />
+                        <strong>Cliente:</strong> {clientes.find(c => c._id === p.clienteId._id)?.nome || 'N/A'}<br />
+                        <strong>Empresa:</strong> {empresas.find(e => e._id === p.empresaId._id)?.nomeFantasia || 'N/A'}<br />
                         <strong>Itens:</strong>
                         <div className="card">
                             <ul>
                                 {p.itens.map((i, idx) => {
-                                    const prod = produtos.find(prod => prod._id === i.produtoId);
+                                    const prod = produtos.find(prod => prod._id === i.produtoId._id);
                                     return (
                                         <li key={idx}>
                                             {prod?.nome || 'Produto'} x {i.quantidade}
@@ -137,7 +139,7 @@ export default function Pedidos() {
                                 })}
                             </ul>
                         </div>
-                        <strong>Total:</strong> R$ {p.total ? p.total.toFixed(2) : '0,00'}
+                        <strong>Total:</strong> R$ {p.valorTotal ? p.valorTotal.toFixed(2) : '0,00'}
                     </div>
                 ))}
             </div>

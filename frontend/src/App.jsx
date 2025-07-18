@@ -28,7 +28,6 @@ export default function App() {
             <Route path="/produtos" element={<Produtos />} />
             <Route path="/clientes" element={<Clientes />} />
             <Route path="/pedidos" element={<Pedidos />} />
-            {/* Futuras páginas protegidas */}
           </Route>
         </Routes>
       </BrowserRouter>

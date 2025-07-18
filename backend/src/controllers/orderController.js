@@ -27,7 +27,7 @@ exports.create = async (req, res) => {
 exports.getAll = async (req, res) => {
     const pedidos = await Order.find()
         .populate('clienteId', 'nome')
-        .populate('empresaId', 'nome')
+        .populate('empresaId', 'nomeFantasia')
         .populate('itens.produtoId', 'nome preco');
     res.json(pedidos);
 };
