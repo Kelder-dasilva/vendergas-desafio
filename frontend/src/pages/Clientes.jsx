@@ -93,8 +93,8 @@ export default function Clientes() {
     );
 
     return (
-        <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
-            <form onSubmit={handleSubmit} style={{ width: '320px' }}>
+        <div className="page">
+            <form onSubmit={handleSubmit} className="form-box">
                 <h2>{editId ? 'Editar Cliente' : 'Cadastrar Cliente'}</h2>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
                 <input
@@ -133,7 +133,7 @@ export default function Clientes() {
                 )}
             </form>
 
-            <div style={{ flex: 1 }}>
+            <div className="list">
                 <h2>Clientes Cadastrados</h2>
                 <input
                     placeholder="Filtrar por nome ou documento"
@@ -143,19 +143,16 @@ export default function Clientes() {
                 />
                 <ul style={{ listStyle: 'none', padding: 0 }}>
                     {clientesFiltrados.map((cliente) => (
-                        <li key={cliente._id} style={{
-                            background: '#f1f1f1',
-                            marginBottom: '1rem',
-                            padding: '1rem',
-                            borderRadius: '6px'
-                        }}>
-                            <strong>{cliente.nome}</strong><br />
-                            Documento: {cliente.documento}<br />
-                            Telefone: {cliente.telefone}<br />
-                            Endereço: {cliente.endereco}<br />
-                            <button onClick={() => handleEdit(cliente)}>Editar</button>{' '}
-                            <button onClick={() => handleDelete(cliente._id)}>Excluir</button>
-                        </li>
+                        <div className="card">
+                            <li key={cliente._id} >
+                                <strong>{cliente.nome}</strong><br />
+                                Documento: {cliente.documento}<br />
+                                Telefone: {cliente.telefone}<br />
+                                Endereço: {cliente.endereco}<br /><br />
+                                <button onClick={() => handleEdit(cliente)}>Editar</button>{' '}
+                                <button onClick={() => handleDelete(cliente._id)}>Excluir</button>
+                            </li>
+                        </div>
                     ))}
                 </ul>
             </div>

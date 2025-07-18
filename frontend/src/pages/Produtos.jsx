@@ -86,8 +86,8 @@ export default function Produtos() {
     );
 
     return (
-        <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
-            <form onSubmit={handleSubmit} style={{ width: '320px' }}>
+        <div className="page">
+            <form onSubmit={handleSubmit} className="form-box">
                 <h2>{editId ? 'Editar Produto' : 'Cadastrar Produto'}</h2>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
                 <input
@@ -132,7 +132,7 @@ export default function Produtos() {
                 )}
             </form>
 
-            <div style={{ flex: 1 }}>
+            <div className="list">
                 <h2>Produtos Cadastrados</h2>
                 <input
                     placeholder="Filtrar por nome ou código"
@@ -142,20 +142,17 @@ export default function Produtos() {
                 />
                 <ul style={{ listStyle: 'none', padding: 0 }}>
                     {produtosFiltrados.map((produto) => (
-                        <li key={produto._id} style={{
-                            background: '#f1f1f1',
-                            marginBottom: '1rem',
-                            padding: '1rem',
-                            borderRadius: '6px'
-                        }}>
-                            <strong>{produto.nome}</strong><br />
-                            Código: {produto.codigo}<br />
-                            Descrição: {produto.descricao}<br />
-                            Preço: R$ {produto.preco.toFixed(2).replace('.', ',')}<br />
-                            Empresa: {empresas.find(e => e._id === produto.empresaId)?.nomeFantasia || 'N/A'}<br />
-                            <button onClick={() => handleEdit(produto)}>Editar</button>{' '}
-                            <button onClick={() => handleDelete(produto._id)}>Excluir</button>
-                        </li>
+                        <div className="card">
+                            <li key={produto._id}>
+                                <strong>{produto.nome}</strong><br />
+                                Código: {produto.codigo}<br />
+                                Descrição: {produto.descricao}<br />
+                                Preço: R$ {produto.preco.toFixed(2).replace('.', ',')}<br />
+                                Empresa: {empresas.find(e => e._id === produto.empresaId)?.nomeFantasia || 'N/A'}<br /><br />
+                                <button onClick={() => handleEdit(produto)}>Editar</button>{' '}
+                                <button onClick={() => handleDelete(produto._id)}>Excluir</button>
+                            </li>
+                        </div>
                     ))}
                 </ul>
             </div>

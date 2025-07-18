@@ -106,8 +106,8 @@ export default function Empresas() {
     );
 
     return (
-        <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
-            <form onSubmit={handleSubmit} style={{ width: '320px' }}>
+        <div className="page">
+            <form onSubmit={handleSubmit} className="form-box">
                 <h2>{editId ? 'Editar Empresa' : 'Cadastrar Empresa'}</h2>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
                 <input
@@ -160,7 +160,7 @@ export default function Empresas() {
                 )}
             </form>
 
-            <div style={{ flex: 1 }}>
+            <div className="list">
                 <h2>Empresas Cadastradas</h2>
                 <input
                     placeholder="Filtrar por nome ou CNPJ"
@@ -171,23 +171,19 @@ export default function Empresas() {
 
                 <ul style={{ listStyle: 'none', padding: 0 }}>
                     {empresasFiltradas.map((empresa) => (
-                        <li
-                            key={empresa._id}
-                            style={{
-                                background: '#f1f1f1',
-                                marginBottom: '1rem',
-                                padding: '1rem',
-                                borderRadius: '6px'
-                            }}
-                        >
-                            <strong>{empresa.nomeFantasia}</strong><br />
-                            Razão Social: {empresa.razaoSocial}<br />
-                            CNPJ: {empresa.cnpj}<br />
-                            CEP: {empresa.cep}<br />
-                            Endereço: {empresa.endereco}<br />
-                            <button onClick={() => handleEdit(empresa)}>Editar</button>{' '}
-                            <button onClick={() => handleDelete(empresa._id)}>Excluir</button>
-                        </li>
+                        <div className="card">
+                            <li key={empresa._id}>
+                                <strong>{empresa.nomeFantasia}</strong><br />
+                                Razão Social: {empresa.razaoSocial}<br />
+                                CNPJ: {empresa.cnpj}<br />
+                                CEP: {empresa.cep}<br />
+                                Endereço: {empresa.endereco}
+                                <br />
+                                <br />
+                                <button onClick={() => handleEdit(empresa)}>Editar</button>{' '}
+                                <button onClick={() => handleDelete(empresa._id)}>Excluir</button>
+                            </li>
+                        </div>
                     ))}
                 </ul>
             </div>
